@@ -10321,7 +10321,7 @@
   
   .sidebar {
     width: 6.5rem;
-    min-height: 100vh;
+    min-height: 1000vh;
   }
   
   .sidebar .nav-item {
@@ -10861,7 +10861,7 @@
   }
   
   .bg-login-image {
-    background: url("https://source.unsplash.com/K4mSJ7kc0As/600x800");
+    background: url("https://thumbs.dreamstime.com/b/admin-office-binder-wooden-desk-table-colored-pencil-pencils-pen-notebook-paper-79046621.jpg/400x600");
     background-position: center;
     background-size: cover;
   }

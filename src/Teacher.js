@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import {Link} from 'react-router-dom';
 import axios from 'axios';
-function Student() {
+function Teacher() {
     const [users,setUsers]=useState([]);
     const [isLoading,setLoading] = useState(false);
     useEffect( () =>{ 
@@ -11,7 +11,7 @@ function Student() {
 let fetchData = async() =>{
     try{
         setLoading(true)
-        const users= await axios.get("https://63ec8d3d32a08117239d13f9.mockapi.io/api/students");
+        const users= await axios.get("https://6449d2f5a8370fb3213ed62a.mockapi.io/teachers");
         console.log(users);
         setUsers(users.data);
         setLoading(false)
@@ -20,11 +20,11 @@ let fetchData = async() =>{
     }
 
 }
-let deleteStudent = async (userId) => {
+let deleteTeacher = async (userId) => {
     const result = window.confirm("Are you sure you want to delete?");
     if (result) {
       try {
-        await axios.delete(`https://63ec8d3d32a08117239d13f9.mockapi.io/api/students/${userId}`);
+        await axios.delete(`https://6449d2f5a8370fb3213ed62a.mockapi.io/teachers/${userId}`);
         setUsers(users.filter(user => user.id !== userId));
         alert("User deleted successfully");
       } catch (error) {
@@ -37,9 +37,9 @@ let deleteStudent = async (userId) => {
     
       <div class="container-fluid">
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
-       <h1 class="h3 mb-2 text-gray-800">Students List</h1>
-       <Link to={"student_create"} class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
-                                class="fas fa-download fa-sm text-white-50"></i> Create Student</Link>
+       <h1 class="h3 mb-2 text-gray-800">teachers List</h1>
+       <Link to={"teacher_create"} class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+                                class="fas fa-download fa-sm text-white-50"></i> Create Teacher</Link>
       </div>
           {
             isLoading ? <div class="spinner-border" role="status">
@@ -54,14 +54,14 @@ let deleteStudent = async (userId) => {
             <thead>
                             <tr>
                                 <th>ID</th>
-                                <th>Roll No</th>
+                                <th>Employee No</th>
                                 <th>Name</th>
-                                <th>Father Name</th>
-                              
-                                <th>Admission Date</th>
-                                <th>Standard</th>
-                              <th>Class Teacher</th>
-                              <th>Action</th>
+                                <th>Joined Date</th>
+                                <th>DOB</th>
+                                <th>Subject</th>
+                                <th>Phone</th>
+                                <th>Action</th>
+
                             </tr>
                         </thead>
                     
@@ -70,19 +70,19 @@ let deleteStudent = async (userId) => {
                            {users.map((user) =>{
                             return  <tr key={user.id}>
                                 <td>{user.id}</td>
-                            <td>{user.RollNo}</td>
-                            <td>{user.Name}</td>
+                            <td>{user.employeeNo}</td>
+                            <td>{user.name}</td>
+                            <td>{user.joinDate}</td>
+                            <td>{user.dob}</td>
+                            <td>{user.Subject}</td>
+                            <td>{user.Phone}</td>
                             
-                            <td>{user.FatherName}</td>
-                            <td>{user.AdmissionDate}</td>
-                            <td>{user.Standard}</td>
-                            <td>{user.ClassTeacher}</td>
                             <td>
                                <span> <Link to={`${user.id}`} className='btn btn-warning mr-2'>View</Link></span>
                             
                             
                                <span> <Link to={`${user.id}/edit`} className='btn btn-primary mr-2'>Edit</Link></span>
-                               <span> <button onClick={() => deleteStudent(user.id)} className='btn btn-danger'>Del</button></span>
+                               <span> <button onClick={() => deleteTeacher(user.id)} className='btn btn-danger'>Del</button></span>
                             </td>
                         </tr>
                            })
@@ -104,4 +104,4 @@ let deleteStudent = async (userId) => {
   )
 }
 
-export default Student
+export default Teacher
